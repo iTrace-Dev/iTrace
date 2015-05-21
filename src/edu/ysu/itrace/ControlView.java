@@ -39,6 +39,13 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.ui.progress.UIJob;
 
+import javax.swing.BoxLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+
 import edu.ysu.itrace.exceptions.CalibrationException;
 import edu.ysu.itrace.exceptions.EyeTrackerConnectException;
 import edu.ysu.itrace.gaze.IGazeHandler;
@@ -204,7 +211,7 @@ public class ControlView extends ViewPart implements IPartListener2,
                 stopTracking();
             }
         });
-
+        
         Button calibrateButton = new Button(buttonComposite, SWT.PUSH);
         calibrateButton.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
                 true, 1, 1));
@@ -333,11 +340,11 @@ public class ControlView extends ViewPart implements IPartListener2,
         solversComposite.setLayout(new GridLayout(2, false));
 
         // Configure solvers here.
-        jsonSolver = new JSONGazeExportSolver(rootShell);
+        jsonSolver = new JSONGazeExportSolver();
         availableSolvers.add(jsonSolver);
 
-        xmlSolver = new XMLGazeExportSolver(rootShell);
-        availableSolvers.add(new XMLGazeExportSolver(rootShell));
+        xmlSolver = new XMLGazeExportSolver();
+        availableSolvers.add(xmlSolver);
 
         for (final ISolver solver : availableSolvers) {
             final Button solverEnabled =
@@ -366,7 +373,33 @@ public class ControlView extends ViewPart implements IPartListener2,
             });
             grayedControls.addIfAbsent(solverConfig);
         }
+        
+        final Button infoButton = new Button(solversComposite, SWT.PUSH);
+        infoButton.setText("Session Info");
+        infoButton.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+            	UIManager.put("swing.boldMetal", new Boolean(false)); //make font plain
+            	
+            	JTextField sessionID = new JTextField();
+            	JTextField taskID = new JTextField();
+         
+                JPanel sessionPanel = new JPanel();
+                sessionPanel.setLayout(new BoxLayout(sessionPanel, BoxLayout.Y_AXIS));
+                sessionPanel.add(new JLabel("Enter the Session ID:"));
+                sessionPanel.add(sessionID);
+                sessionPanel.add(new JLabel("Enter the Task ID:"));
+                sessionPanel.add(taskID);
 
+                final int selection = JOptionPane.showConfirmDialog(null, sessionPanel, 
+                         "Enter the Current Session Info.",
+                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+                if (selection == JOptionPane.OK_OPTION) {
+                   //Do nothing for now
+                }
+            }
+        });  
+        grayedControls.add(infoButton);
     }
 
     @Override
