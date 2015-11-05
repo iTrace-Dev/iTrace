@@ -41,14 +41,8 @@ public class WorkbenchPartGazeHandler implements IGazeHandler {
             }
 
             @Override
-            public String getType() {
-                // TODO Auto-generated method stub
+            public String getGazeType() {
                 return "part";
-            }
-
-            @Override
-            public Map<String, String> getProperties() {
-                return properties;
             }
         };
     }
