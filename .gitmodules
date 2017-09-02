@@ -1,9 +1,9 @@
 [submodule "iTrace-VisualStudio"]
 	path = iTrace-VisualStudio
-	url = git@github.com:SERESLab/iTrace-VisualStudio.git
+	url = ../iTrace-VisualStudio.git
 [submodule "iTrace-Eclipse"]
 	path = iTrace-Eclipse
-	url = git@github.com:SERESLab/iTrace-Eclipse.git
+	url = ../iTrace-Eclipse.git
 [submodule "iTrace-Core"]
 	path = iTrace-Core
-	url = git@github.com:SERESLab/iTrace-Core.git
+	url = ../iTrace-Core.git
