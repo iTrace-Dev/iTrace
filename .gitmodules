@@ -10,3 +10,6 @@
 [submodule "iTrace-Chrome"]
 	path = iTrace-Chrome
 	url = ../iTrace-Chrome.git
+[submodule "iTrace-Atom"]
+	path = iTrace-Atom
+	url = ../iTrace-Atom.git
