@@ -13,3 +13,4 @@
 [submodule "iTrace-Atom"]
 	path = iTrace-Atom
 	url = ../iTrace-Atom.git
+	branch = master
